@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<main class="messagePage my-xl">
+    <div class="content-box">
+        <div class="message">
+            <h2 class="message__subject">REST API info</h2>
+            <div class="message__body">
+                <p class="message__author">Source: <a href="https://www.joranschols.com/api/">Rest api info</a>
+                </p>
+                <br />
+                "GET": "api/projects"
+                <br />
+                <p>retrieve all projects</p>
+                <br />
+                "GET": "api/projects/id"
+                <br />
+                <p>retrieve a single project</p>
+                <br />
+                "POST": "api/projects/id/vote"
+                <br />
+                <p>Vote on a project, api-key is mandatory</p>
+                <br />
+                "POST": "api/users/token"
+                <br />
+                <p>retrieve api-key, use your login credentials</p>
+                <br />
+                "POST": "api/users/token/refresh"
+                <br />
+                <p>refresh api-key</p>
+                <br />
+                <p class="message__author">Example of a working frontend api connection, login required: <a
+                        href="https://amonmcduul.github.io/api_connect/login.html">Frontend api connect</a>
+                    <br />
+                    <a href="https://github.com/AmonMcDuul/api_connect">Github repository</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+{% endblock content %}

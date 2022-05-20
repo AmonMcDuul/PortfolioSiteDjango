@@ -1,0 +1,57 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<!-- Main Section -->
+<main class="projects">
+    <section class="hero-section text-center">
+        <div class="container container--narrow">
+            <div class="hero-section__box">
+                <h2>Search for <span>movies</span></h2>
+            </div>
+
+            <div class="hero-section__search">
+                <form id="searchForm" class="form" action="{% url 'moviedb' %}" method="get">
+                    <div class="form__field">
+                        <label for="formInput#search">Search Movies</label>
+                        <input class="input input--text" id="formInput#search" type="text" name="search_query"
+                            value="{{search_query}}" placeholder="Search movie" />
+                    </div>
+                    <input class="btn btn--sub btn--lg" type="submit" value="Search" />
+                </form>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+    <div class="container">
+        <div class="layout">
+            <div class="column column--1of3">
+                <img src="{{data.Poster}}" alt="Image not available"
+                    style="width: 80%; display: block; margin-left: auto; margin-right: auto;" />
+            </div>
+            <hr>
+            <div class="column column--2of3">
+                <h3>{{data.Title}}</h3>
+                <h4><i>Rating: {{data.imdbRating}}</i></h4>
+                <p><i>{{data.Released}}</i></p>
+                <hr><br />
+                <p><b>Runtime:</b> {{data.Runtime}}</p>
+                <p><b>Director:</b> {{data.Director}}</p>
+                <p><b>Writer:</b> {{data.Writer}}</p>
+                <p><b>Actors:</b> {{data.Actors}}</p>
+                <p><b>Genre:</b> {{data.Genre}}</p>
+                <p><b>Rating:</b> {{data.Rated}}</p>
+                <p><b>Awards:</b> {{data.Awards}}</p>
+                <br>
+                <p><b>Plot:</b></p>
+                <p>{{data.Plot}}</p>
+                <br>
+            </div>
+        </div>
+    </div>
+    <a href="{% url 'savedmovies' %}">
+        <h3>Klikkerklikkertons</h3>
+    </a>
+</main>
+
+{% endblock content %}

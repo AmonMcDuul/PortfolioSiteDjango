@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+{% block content %}
+<br>
+<!-- Main Section -->
+<main class="projects">
+    <div class="container">
+        <div class="layout">
+            <div class="column column--1of3">
+                <h2 class="dev__name"><a href="{% url 'apod' %}">APOD</a></h2>
+                <h2 class="dev__name"><a href="{% url 'spacenews' %}">SpaceNews</a></h2>
+                <h2 class="dev__name"><a href="{% url 'marspost' %}">MarsPost</a></h2>
+            </div>
+            <hr>
+            <div class="column column--2of3">
+                <h1>The MarsPost</h1>
+                <hr>
+                <br />
+                {% for dat in data %}
+                <a href="{% url 'singlepage' dat.id %}">
+                    <h3>{{dat.title}}</h3>
+                </a>
+                <small><i>{{dat.publishedAt}}</i></small>
+                <br />
+                <br />
+                <img src="{{dat.imageUrl}}" style="width: 38vw;" />
+                <br />
+                <p>{{dat.summary}}</p>
+                <a href="{{dat.url}}">source</a>
+                <br />
+                <br />
+                <hr>
+                <br />
+                <br />
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

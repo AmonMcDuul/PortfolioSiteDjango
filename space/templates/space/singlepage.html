@@ -1,0 +1,54 @@
+{% extends 'main.html' %}
+{% block content %}
+<br>
+<!-- Main Section -->
+<main class="projects">
+    <div class="container">
+        <div class="layout">
+            <div class="column column--1of3">
+                <h2 class="dev__name"><a href="{% url 'apod' %}">APOD</a></h2>
+                <h2 class="dev__name"><a href="{% url 'spacenews' %}">SpaceNews</a></h2>
+                <h2 class="dev__name"><a href="{% url 'marspost' %}">MarsPost</a></h2>
+            </div>
+            <hr>
+            <div class="column column--2of3">
+                {% for dat in data %}
+                <h1>{{dat.title}}</h1>
+                <small><i>{{dat.publishedAt}}</i></small>
+                <br />
+                <br />
+                <img src="{{dat.imageUrl}}" style="width: 38vw;" />
+                <br />
+                <p>{{dat.summary}}</p>
+                <a href="{{dat.url}}">source</a>
+                <br />
+                <br />
+                <hr>
+                {% for comment in comments %}
+                <div class="comment">
+                    <div class="comment__details">
+                        <br>
+                        <p class="comment__author">{{comment.name}}</p>
+                        <p class="comment__info"><i>{{comment.created}}</i></p>
+                        <p class="comment__info">{{comment.body|linebreaksbr}}</p>
+                        <br>
+                    </div>
+                </div>
+                <hr>
+                {% endfor %}
+                <form class="form" action="{% url 'singlepage' dat.id %}" method="POST">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="form__field">
+                        <label for="formInput#textarea">{{field.label}} </label>
+                        {{field}}
+                    </div>
+                    {% endfor %}
+                    <input class="btn btn--sub btn--lg" type="submit" value="Comment" />
+                </form>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

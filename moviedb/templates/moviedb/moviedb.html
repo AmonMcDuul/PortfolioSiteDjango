@@ -1,0 +1,48 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<!-- Main Section -->
+<main class="projects">
+    <section class="hero-section text-center">
+        <div class="container container--narrow">
+            <div class="hero-section__box">
+                <h2>Search for <span>movies</span></h2>
+            </div>
+
+            <div class="hero-section__search">
+                <form id="searchForm" class="form" action="{% url 'moviedb' %}" method="get">
+                    <div class="form__field">
+                        <label for="formInput#search">Search Movies </label>
+                        <input class="input input--text" id="formInput#search" type="text" name="search_query"
+                            value="{{search_query}}" placeholder="Search movie" />
+                    </div>
+                    <input class="btn btn--sub btn--lg" type="submit" value="Search" />
+                </form>
+            </div>
+        </div>
+    </section>
+    <br>
+    {% if data.Search %}
+    <div class="container">
+        <div class="layout">
+            {% for dat in data.Search %}
+            <div class="column column--1of3">
+                <img src="{{dat.Poster}}" alt="Image not available"
+                    style="width: 50%; display: block; margin-left: auto; margin-right: auto;" />
+            </div>
+            <hr>
+            <div class="column column--2of3">
+                <a href="{% url 'selectedmovie' dat.imdbID %}">
+                    <h3>{{dat.Title}}</h3>
+                </a>
+                <hr>
+                <p>Type: {{dat.Type}}</p>
+                <p>Year: {{dat.Year}}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</main>
+
+{% endblock content %}
